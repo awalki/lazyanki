@@ -1,9 +1,9 @@
-use anki::{
+use clap::{Parser, Subcommand};
+use lazyanki_anki::{
     AnkiClient,
     models::{AddNoteResponse, Fields, Note, Params},
 };
-use clap::{Parser, Subcommand};
-use parser::{GermanStrategy, ParserStrategy, utils::get_client};
+use lazyanki_parser::{GermanStrategy, ParserStrategy, utils::get_client};
 
 #[derive(Parser, Debug)]
 struct Cli {

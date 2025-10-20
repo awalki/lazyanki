@@ -1,6 +1,6 @@
 [workspace]
-members = ["anki", "parser"]
-default-members = [".", "anki", "parser"]
+members = ["lazyanki-anki", "lazyanki-parser"]
+default-members = [".", "lazyanki-anki", "lazyanki-parser"]
 resolver = "3"
 
 [workspace.package]
