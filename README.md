@@ -1,64 +1,44 @@
 # LazyAnki
 
-A Rust workspace for Anki automation and parsing tools.
+Don't waste your time on making flashcards, use LazyAnki instead!
 
-## Project Structure
+## Features
 
-This project uses a Cargo workspace to manage multiple related crates:
+- Auto-parsing cards from the dictionaries
+- Card automaticly will be added to the selected deck
 
-- **`lazyanki`** - Main application crate
-- **`anki`** - Anki API client library
-- **`parser`** - Web scraping and parsing utilities
+## Installation
 
-## Workspace Benefits
-
-The project has been optimized using Cargo workspace features:
-
-### Centralized Dependency Management
-- All common dependencies are defined in the workspace `Cargo.toml`
-- Version consistency across all crates
-- Easier maintenance and updates
-- Reduced compilation time through shared artifacts
-
-### Common Dependencies
-- **Error Handling**: `anyhow` for error management
-- **Async Runtime**: `tokio` with full features
-- **HTTP Client**: `reqwest` with JSON support
-- **Serialization**: `serde` and `serde_json`
-- **Web Scraping**: `scraper`, `regex`, `url`
-- **CLI**: `clap` with derive features
-
-## Building
-
-Build the entire workspace:
 ```bash
-cargo build --all
+cargo install lazyanki
 ```
 
-Build a specific crate:
-```bash
-cargo build -p anki
-cargo build -p parser
-cargo build -p lazyanki
+### Also you have to install Anki and AnkiConnect to use LazyAnki, otherwise you will get an error
+- [AnkiConnect](https://git.sr.ht/~foosoft/anki-connect)
+
+> Your anki instance should be running while performing actions
+
+## Usage
+
+```
+lazyanki list
+"""
+🎟️ Your decks:
+
+Deutsch
+- Deutsch::A1 (Grammatik)
+- Deutsch::A2 (Grammatik)
+- Deutsch::B1 (Grammatik)
+- Deutsch::Vokabeln
+- Deutsch::Vokabeln (Verbs)
+- English by the Movies
+- Test
+"""
+
+lazyanki new -w abholen -d "Deutsch::Vokabeln (Verbs)"
 ```
 
-## Testing
+## Roadmap
 
-Run tests for all crates:
-```bash
-cargo test --all
-```
-
-## Workspace Configuration
-
-The workspace is configured with:
-- Rust edition 2021
-- Shared metadata (version, authors, license)
-- Centralized dependency versions
-- Consistent feature flags
-
-This structure makes it easy to:
-- Add new related crates
-- Maintain dependency versions
-- Share code between crates
-- Build and test everything together
+- Support for more dictionaries
+- Support for more languages (Currently German cards and Russian translation)
