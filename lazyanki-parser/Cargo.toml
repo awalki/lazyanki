@@ -15,5 +15,5 @@ async-trait.workspace = true
 reqwest.workspace = true
 scraper.workspace = true
 url.workspace = true
-lazyanki-anki = { path = "../anki", version = "0.1.1" }
+lazyanki-anki = { path = "../lazyanki-anki", version = "0.1.1" }
 regex.workspace = true
