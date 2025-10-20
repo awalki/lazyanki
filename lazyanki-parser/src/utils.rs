@@ -3,12 +3,10 @@ use reqwest::{
     header::{ACCEPT_LANGUAGE, HeaderMap, HeaderValue},
 };
 
-pub async fn get_client() -> anyhow::Result<Client> {
+pub async fn get_client(native_lang_tag: String) -> anyhow::Result<Client> {
     let mut headers = HeaderMap::new();
-    headers.insert(
-        ACCEPT_LANGUAGE,
-        HeaderValue::from_static("ru-RU,ru;q=0.9,en;q=0.8"),
-    );
+
+    headers.insert(ACCEPT_LANGUAGE, HeaderValue::from_str(&native_lang_tag)?);
     let client = reqwest::Client::builder()
         .default_headers(headers)
         .build()?;

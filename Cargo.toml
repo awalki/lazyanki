@@ -4,7 +4,7 @@ default-members = [".", "lazyanki-anki", "lazyanki-parser"]
 resolver = "3"
 
 [workspace.package]
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
 authors = ["Nazar"]
 license = "MIT"
@@ -33,7 +33,7 @@ url = "2.5.7"
 clap = { version = "4.5.49", features = ["derive"] }
 
 lazyanki-anki = { path = "./lazyanki-anki", version = "0.1.1" }
-lazyanki-parser = { path = "./lazyanki-parser", version = "0.1.1" }
+lazyanki-parser = { path = "./lazyanki-parser", version = "0.1.2" }
 
 [package]
 name = "lazyanki"
@@ -51,12 +51,17 @@ documentation.workspace = true
 
 [dependencies]
 anyhow.workspace = true
-lazyanki-parser = { path = "./lazyanki-parser", version = "0.1.1" }
+lazyanki-parser = { path = "./lazyanki-parser", version = "0.1.2" }
 lazyanki-anki = { path = "./lazyanki-anki", version = "0.1.1" }
 tokio.workspace = true
 reqwest.workspace = true
 regex.workspace = true
 clap.workspace = true
+serde.workspace = true
+
+oxilangtag = "0.1.5"
+directories = "6.0.0"
+toml = "0.9.8"
 
 [profile.release]
 opt-level = 3

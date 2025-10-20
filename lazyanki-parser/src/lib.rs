@@ -1,10 +1,9 @@
 use anyhow::Ok;
 use async_trait::async_trait;
 use regex::Regex;
+use reqwest::Client;
 use scraper::{Html, Selector};
 use url::Url;
-
-use crate::utils::get_client;
 
 pub mod utils;
 
@@ -16,6 +15,7 @@ pub trait ParserStrategy {
 pub struct GermanStrategy {
     pub url: String,
     pub word: String,
+    pub client: Client,
 }
 
 pub struct GermanParseResult {
@@ -30,13 +30,12 @@ impl ParserStrategy for GermanStrategy {
         let mut url = Url::parse(&self.url)?;
         url.query_pairs_mut().append_pair("w", &self.word);
 
-        let client = get_client().await?;
-        let resp = client.get(url).send().await?;
+        let resp = self.client.get(url).send().await?;
         let html = resp.text().await?;
 
         let document = Html::parse_document(&html);
 
-        let translation_selector = Selector::parse(r#"span[lang="ru"]"#).unwrap();
+        let translation_selector = Selector::parse(r#"span[lang]"#).unwrap();
 
         let table_selector = Selector::parse(".vTbl").unwrap();
         let example_selector = Selector::parse("p.rInf.r1Zeile.rU3px.rO0px.rNt").unwrap();

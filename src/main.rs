@@ -5,6 +5,10 @@ use lazyanki_anki::{
 };
 use lazyanki_parser::{GermanStrategy, ParserStrategy, utils::get_client};
 
+use crate::config::{create_config, load_config};
+
+pub mod config;
+
 #[derive(Parser, Debug)]
 struct Cli {
     #[command(subcommand)]
@@ -19,24 +23,34 @@ enum Commands {
         #[arg(long, short = 'd')]
         deck: String,
     },
+    Init {
+        #[arg(long, short = 'n')]
+        native_language: String,
+        #[arg(long, short = 't')]
+        target_language: String,
+    },
     List,
 }
 
+// TODO: refactor
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     let args = Cli::parse();
-    let client = get_client().await?;
-    let anki = AnkiClient {
-        client: client,
-        url: "http://localhost:8765".to_string(),
-    };
 
     match args.command {
         Commands::New { word, deck } => {
+            let config = load_config()?;
+            let client = get_client(config.languages.native_lang_tag).await?;
+            let anki = AnkiClient {
+                client: client.clone(),
+                url: "http://localhost:8765".to_string(),
+            };
+
             println!("🪄 Creating a new card: {}", word);
             let german = GermanStrategy {
                 url: "https://verbformen.ru/".to_string(),
                 word: word,
+                client,
             };
 
             let word = german.parse().await?;
@@ -51,7 +65,21 @@ async fn main() -> anyhow::Result<()> {
                 println!("🟥 Failed to create card, maybe there is a duplicate");
             }
         }
+        Commands::Init {
+            native_language,
+            target_language,
+        } => {
+            create_config(native_language, target_language)?;
+            println!("✅ Config has been created successfully");
+        }
         Commands::List => {
+            let config = load_config()?;
+            let client = get_client(config.languages.native_lang_tag).await?;
+            let anki = AnkiClient {
+                client: client.clone(),
+                url: "http://localhost:8765".to_string(),
+            };
+
             let deck_names = anki.deck_names().await?;
             println!("🎟️ Your decks:\n\n{}", deck_names.result.join("\n- "))
         }
