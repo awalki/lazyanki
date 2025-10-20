@@ -32,8 +32,8 @@ url = "2.5.7"
 
 clap = { version = "4.5.49", features = ["derive"] }
 
-anki = { path = "./anki", version = "0.1.1" }
-parser = { path = "./parser", version = "0.1.1" }
+lazyanki-anki = { path = "./anki", version = "0.1.1" }
+lazyanki-parser = { path = "./parser", version = "0.1.1" }
 
 [package]
 name = "lazyanki"
@@ -51,8 +51,8 @@ documentation.workspace = true
 
 [dependencies]
 anyhow.workspace = true
-parser = { path = "./parser", version = "0.1.1" }
-anki = { path = "./anki", version = "0.1.1" }
+lazyanki-parser = { path = "./parser", version = "0.1.1" }
+lazyanki-anki = { path = "./anki", version = "0.1.1" }
 tokio.workspace = true
 reqwest.workspace = true
 regex.workspace = true

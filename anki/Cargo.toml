@@ -1,5 +1,5 @@
 [package]
-name = "anki"
+name = "lazyanki-anki"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true

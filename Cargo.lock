@@ -12,17 +12,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "anki"
-version = "0.1.1"
-dependencies = [
- "anyhow",
- "async-trait",
- "reqwest",
- "serde",
- "serde_json",
-]
-
-[[package]]
 name = "anstream"
 version = "0.6.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -756,13 +745,37 @@ dependencies = [
 name = "lazyanki"
 version = "0.1.1"
 dependencies = [
- "anki",
  "anyhow",
  "clap",
- "parser",
+ "lazyanki-anki",
+ "lazyanki-parser",
  "regex",
  "reqwest",
  "tokio",
+]
+
+[[package]]
+name = "lazyanki-anki"
+version = "0.1.1"
+dependencies = [
+ "anyhow",
+ "async-trait",
+ "reqwest",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "lazyanki-parser"
+version = "0.1.1"
+dependencies = [
+ "anyhow",
+ "async-trait",
+ "lazyanki-anki",
+ "regex",
+ "reqwest",
+ "scraper",
+ "url",
 ]
 
 [[package]]
@@ -949,19 +962,6 @@ dependencies = [
  "redox_syscall",
  "smallvec",
  "windows-link 0.2.1",
-]
-
-[[package]]
-name = "parser"
-version = "0.1.1"
-dependencies = [
- "anki",
- "anyhow",
- "async-trait",
- "regex",
- "reqwest",
- "scraper",
- "url",
 ]
 
 [[package]]

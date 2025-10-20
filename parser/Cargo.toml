@@ -1,5 +1,5 @@
 [package]
-name = "parser"
+name = "lazyanki-parser"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -15,5 +15,5 @@ async-trait.workspace = true
 reqwest.workspace = true
 scraper.workspace = true
 url.workspace = true
-anki = { path = "../anki", version = "0.1.1" }
+lazyanki-anki = { path = "../anki", version = "0.1.1" }
 regex.workspace = true
