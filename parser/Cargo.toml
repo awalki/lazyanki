@@ -5,6 +5,9 @@ edition.workspace = true
 authors.workspace = true
 license.workspace = true
 repository.workspace = true
+description = "Web scraping dictionary and parsing utilities for Rust"
+keywords = ["parser", "scraper", "web", "html", "regex"]
+categories = ["web-programming", "parser-implementations"]
 
 [dependencies]
 anyhow.workspace = true
@@ -12,5 +15,5 @@ async-trait.workspace = true
 reqwest.workspace = true
 scraper.workspace = true
 url.workspace = true
-anki.workspace = true
+anki = { path = "../anki", version = "0.1.1" }
 regex.workspace = true

@@ -5,6 +5,9 @@ edition.workspace = true
 authors.workspace = true
 license.workspace = true
 repository.workspace = true
+description = "AnkiConnect API client library for Rust"
+keywords = ["anki", "api", "client", "http", "async"]
+categories = ["web-programming", "api-bindings"]
 
 [dependencies]
 async-trait.workspace = true

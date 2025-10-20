@@ -9,6 +9,12 @@ edition = "2024"
 authors = ["Nazar"]
 license = "MIT"
 repository = "https://github.com/awalki/lazyanki"
+description = "LazyAnki - Rust workspace for Anki automation and parsing tools"
+keywords = ["anki", "automation", "scraping", "parser", "cli"]
+categories = ["command-line-utilities", "web-programming"]
+readme = "README.md"
+homepage = "https://github.com/awalki/lazyanki"
+documentation = "https://docs.rs/lazyanki"
 
 [workspace.dependencies]
 anyhow = "1.0.100"
@@ -26,8 +32,8 @@ url = "2.5.7"
 
 clap = { version = "4.5.49", features = ["derive"] }
 
-anki = { path = "./anki" }
-parser = { path = "./parser" }
+anki = { path = "./anki", version = "0.1.1" }
+parser = { path = "./parser", version = "0.1.1" }
 
 [package]
 name = "lazyanki"
@@ -36,11 +42,17 @@ edition.workspace = true
 authors.workspace = true
 license.workspace = true
 repository.workspace = true
+description.workspace = true
+keywords.workspace = true
+categories.workspace = true
+readme.workspace = true
+homepage.workspace = true
+documentation.workspace = true
 
 [dependencies]
 anyhow.workspace = true
-parser.workspace = true
-anki.workspace = true
+parser = { path = "./parser", version = "0.1.1" }
+anki = { path = "./anki", version = "0.1.1" }
 tokio.workspace = true
 reqwest.workspace = true
 regex.workspace = true
