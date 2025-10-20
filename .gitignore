@@ -1,0 +1,29 @@
+# Build outputs
+target/
+**/target/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Runtime files
+*.log
+*.tmp
+*.temp
+
+# Environment files
+.env
+.env.local
+.env.production
