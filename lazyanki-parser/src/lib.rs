@@ -1,36 +1,71 @@
 use anyhow::Ok;
 use async_trait::async_trait;
+use lazyanki_common::{get_client, load_config};
 use regex::Regex;
-use reqwest::Client;
 use scraper::{Html, Selector};
 use url::Url;
 
-pub mod utils;
-
 #[async_trait]
 pub trait ParserStrategy {
-    async fn parse(&self) -> anyhow::Result<GermanParseResult>;
+    async fn parse(&self) -> anyhow::Result<ParseResult>;
 }
 
 pub struct GermanStrategy {
     pub url: String,
     pub word: String,
-    pub client: Client,
 }
 
-pub struct GermanParseResult {
+pub struct EnglishStrategy {
+    pub url: String,
+    pub word: String,
+}
+
+pub struct ParseResult {
     pub word: String,
     pub translation: String,
     pub table: String,
 }
 
+pub async fn get_strategy(word: String) -> anyhow::Result<Box<dyn ParserStrategy>> {
+    let config = load_config().expect("config not found");
+
+    let strategy: Box<dyn ParserStrategy> = match config.languages.target_lang_tag.as_str() {
+        "en-US" => Box::new(EnglishStrategy {
+            url: "https://verbformen.ru/".to_string(),
+            word: word.clone(),
+        }),
+        "de-DE" => Box::new(GermanStrategy {
+            url: "https://verbformen.ru/".to_string(),
+            word: word.clone(),
+        }),
+        _ => {
+            println!("Unsupported language");
+            return Err(anyhow::anyhow!("Unsupported language"));
+        }
+    };
+
+    Ok(strategy)
+}
+
+#[async_trait]
+impl ParserStrategy for EnglishStrategy {
+    async fn parse(&self) -> anyhow::Result<ParseResult> {
+        Ok(ParseResult {
+            word: self.word.clone(),
+            translation: String::from("not implemented"),
+            table: String::from("not implemented"),
+        })
+    }
+}
+
 #[async_trait]
 impl ParserStrategy for GermanStrategy {
-    async fn parse(&self) -> anyhow::Result<GermanParseResult> {
+    async fn parse(&self) -> anyhow::Result<ParseResult> {
         let mut url = Url::parse(&self.url)?;
+        let client = get_client().await?;
         url.query_pairs_mut().append_pair("w", &self.word);
 
-        let resp = self.client.get(url).send().await?;
+        let resp = client.get(url).send().await?;
         let html = resp.text().await?;
 
         let document = Html::parse_document(&html);
@@ -65,7 +100,7 @@ impl ParserStrategy for GermanStrategy {
             .unwrap_or_default();
         let text = span.text().collect::<String>();
 
-        Ok(GermanParseResult {
+        Ok(ParseResult {
             word: self.word.clone(),
             translation: format!("{}<br><br>{}", text, example_text),
             table: table_html,

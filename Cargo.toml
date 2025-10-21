@@ -1,5 +1,5 @@
 [workspace]
-members = ["lazyanki-anki", "lazyanki-parser"]
+members = ["lazyanki-anki", "lazyanki-common", "lazyanki-parser"]
 default-members = [".", "lazyanki-anki", "lazyanki-parser"]
 resolver = "3"
 
@@ -30,6 +30,10 @@ scraper = "0.24.0"
 regex = "1.12.2"
 url = "2.5.7"
 
+oxilangtag = "0.1.5"
+directories = "6.0.0"
+toml = "0.9.8"
+
 clap = { version = "4.5.49", features = ["derive"] }
 
 lazyanki-anki = { path = "./lazyanki-anki", version = "0.1.1" }
@@ -53,15 +57,15 @@ documentation.workspace = true
 anyhow.workspace = true
 lazyanki-parser = { path = "./lazyanki-parser", version = "0.1.2" }
 lazyanki-anki = { path = "./lazyanki-anki", version = "0.1.1" }
+lazyanki-common = { path = "./lazyanki-common", version = "0.1.0" }
 tokio.workspace = true
 reqwest.workspace = true
 regex.workspace = true
 clap.workspace = true
 serde.workspace = true
 
-oxilangtag = "0.1.5"
-directories = "6.0.0"
-toml = "0.9.8"
+directories.workspace = true
+toml.workspace = true
 
 [profile.release]
 opt-level = 3

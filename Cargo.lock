@@ -770,8 +770,8 @@ dependencies = [
  "clap",
  "directories",
  "lazyanki-anki",
+ "lazyanki-common",
  "lazyanki-parser",
- "oxilangtag",
  "regex",
  "reqwest",
  "serde",
@@ -791,14 +791,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "lazyanki-common"
+version = "0.1.2"
+dependencies = [
+ "anyhow",
+ "directories",
+ "lazyanki-anki",
+ "reqwest",
+ "serde",
+ "toml",
+]
+
+[[package]]
 name = "lazyanki-parser"
 version = "0.1.2"
 dependencies = [
  "anyhow",
  "async-trait",
- "lazyanki-anki",
+ "lazyanki-common",
  "regex",
- "reqwest",
  "scraper",
  "url",
 ]
@@ -981,15 +992,6 @@ name = "option-ext"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "04744f49eae99ab78e0d5c0b603ab218f515ea8cfe5a456d7629ad883a3b6e7d"
-
-[[package]]
-name = "oxilangtag"
-version = "0.1.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "23f3f87617a86af77fa3691e6350483e7154c2ead9f1261b75130e21ca0f8acb"
-dependencies = [
- "serde",
-]
 
 [[package]]
 name = "parking_lot"

@@ -1,0 +1,21 @@
+[package]
+name = "lazyanki-common"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+description.workspace = true
+keywords.workspace = true
+categories.workspace = true
+readme.workspace = true
+homepage.workspace = true
+documentation.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+directories.workspace = true
+serde.workspace = true
+toml.workspace = true
+reqwest.workspace = true
+lazyanki-anki.workspace = true

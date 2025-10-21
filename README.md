@@ -21,6 +21,11 @@ cargo install lazyanki
 ## Usage
 
 ```
+Supported languages target languages: en-US, de-DE (Language that you want to learn)
+Supported native languages: all, use the correct language code like ru-RU or es-ES or fr-FR
+
+lazyanki init -n en-US -t de-DE
+
 lazyanki list
 """
 🎟️ Your decks:
@@ -41,4 +46,4 @@ lazyanki new -w abholen -d "Deutsch::Vokabeln (Verbs)"
 ## Roadmap
 
 - Support for more dictionaries
-- Support for more languages (Currently German cards and Russian translation)
+- Support for more languages (Currently German with any translation)
