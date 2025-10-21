@@ -15,4 +15,4 @@ async-trait.workspace = true
 regex.workspace = true
 scraper.workspace = true
 url.workspace = true
-lazyanki-common = { path = "../lazyanki-common", version = "0.1.0" }
+lazyanki-common = { path = "../lazyanki-common", version = "0.1.1" }
